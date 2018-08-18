@@ -4,9 +4,10 @@ const router = express.Router();
 const familyService = require('./services/family');
 const productService = require('./services/product');
 const familyProductService = require('./services/familyProduct');
-const usageService = require('./services/usage');
+const classificationService = require('./services/classification');
+const applicationsService = require('./services/application');
 
-const cors=require('cors');
+const cors = require('cors');
 
 router.all('*', cors());
 
@@ -25,13 +26,19 @@ router.route('/products').get(productService.list);
 router.route('/products/:id').get(productService.byId);
 router.route('/products/:id').put(productService.update);
 
-// Family
-router.route('/usages').post(usageService.create);
-router.route('/usages').get(usageService.list);
-router.route('/usages/:id').get(usageService.byId);
-router.route('/usages/:id').put(usageService.update);
-router.route('/usages/:id').delete(usageService.delete);
+// classification
+router.route('/classification').post(classificationService.create);
+router.route('/classification').get(classificationService.list);
+router.route('/classification/:id').get(classificationService.byId);
+router.route('/classification/:id').put(classificationService.update);
+router.route('/classification/:id').delete(classificationService.delete);
 
+//applications
+router.route('/applications').post(applicationsService.create);
+router.route('/applications').get(applicationsService.list);
+router.route('/applications/:id').get(applicationsService.byId);
+router.route('/applications/:id').put(applicationsService.update);
+router.route('/applications/:id').delete(applicationsService.delete);
 
 // FamilyProduct
 router.route('/familyProduct').post(familyProductService.create);
