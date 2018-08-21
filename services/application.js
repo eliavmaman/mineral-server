@@ -11,9 +11,10 @@ module.exports = {
         });
     },
     list: (req, res) => {
-        Application.find({'active': true}, (err, applications) => {
+        Application.find({'active': true}).populate('product family classification').exec((err, apps) => {
             if (err) throw err;
-            res.json(applications);
+
+            res.json(apps);
         });
     },
     byId: (req, res) => {
@@ -33,7 +34,10 @@ module.exports = {
         Application.findOne({_id: id}, (err, c) => {
             if (err) throw err;
 
-            c.name = application.name;
+            c.product = application.product;
+            c.family = application.family;
+            c.classification = application.classification;
+            c.usage = application.usage;
 
             c.save((err, newApplication) => {
                 if (err) throw err;

@@ -25,6 +25,7 @@ router.route('/products').post(productService.create);
 router.route('/products').get(productService.list);
 router.route('/products/:id').get(productService.byId);
 router.route('/products/:id').put(productService.update);
+router.route('/products/:id').delete(productService.delete);
 
 // classification
 router.route('/classification').post(classificationService.create);
